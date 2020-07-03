@@ -61,6 +61,7 @@ The currently supported vcs'es are:
 
 - Git
 - Subversion
+- Mercurial
 
 ## Credits
 
