@@ -9,12 +9,14 @@ import (
 	"github.com/SheetJS/rooster/filter"
 	"github.com/SheetJS/rooster/vcs"
 	"github.com/SheetJS/rooster/vcs/git"
+	"github.com/SheetJS/rooster/vcs/hg"
 	"github.com/SheetJS/rooster/vcs/svn"
 )
 
 var funcMap = map[string]vcs.CloneFunc{
 	"git": git.Clone,
 	"svn": svn.Clone,
+	"hg":  hg.Clone,
 }
 
 func main() {
