@@ -27,7 +27,7 @@ type Set struct {
 func Get() (*Set, error) {
 	pRepo := flag.String("repo", "", "The repo to grab")
 	pExt := flag.String("ext", "", "The extension(s) to filter in a comma seperated list")
-	pVCS := flag.String("type", "git", "The VCS to use")
+	pVCS := flag.String("type", "git", "The VCS to use [supported options: git,svn,hg]")
 	pOut := flag.String("out", "rooster_output", "The directory to store the output")
 
 	flag.Parse()

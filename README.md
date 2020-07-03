@@ -19,7 +19,7 @@ go build
 
 ## Usage
 
-From `./rooster`:
+From `./rooster --help`:
 
 ```
 Usage of ./rooster:
@@ -30,7 +30,7 @@ Usage of ./rooster:
   -repo string
         The repo to grab
   -type string
-        The VCS to use (default "git")
+        The VCS to use [supported options: git,svn,hg] (default "git")
 ```
 
 ### Example
