@@ -56,6 +56,7 @@ If the `-out` flag was used then `rooster_output` would be substituted for the a
 ### Dependencies
 
 You'll need to have your vcs provider installed on your system.
+An exception to this is `git` as `rooster` uses a go-based implementation of git.
 
 The currently supported vcs'es are:
 
@@ -68,3 +69,7 @@ The currently supported vcs'es are:
 ### Logo
 
 Created at [LogoMakr.com](https://www.LogoMakr.com)
+
+## [go-git](https://github.com/go-git/go-git)
+
+For the awesome git library written in pure go.
