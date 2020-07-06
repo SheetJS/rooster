@@ -29,7 +29,7 @@ func TestNew(t *testing.T) {
     - md
 `
 
-		want := []Set{
+		want := []Repository{
 			{
 				RepoURL:    "github.com/foo/bar",
 				VCS:        "git",
@@ -84,7 +84,7 @@ func TestNew(t *testing.T) {
     - md
 `
 
-		want := []Set{
+		want := []Repository{
 			{
 				RepoURL:    "github.com/foo/bar",
 				VCS:        "git",

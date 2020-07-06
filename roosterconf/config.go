@@ -14,16 +14,18 @@ var supportedVCS = map[string]struct{}{
 	"hg":  {},
 }
 
-// Set represents the command line
+// Repository represents the command line
 // flags.
-type Set struct {
+type Repository struct {
 	RepoURL    string   `yaml:"repo"`
 	VCS        string   `yaml:"type"`
 	OutputDir  string   `yaml:"out"`
 	Extensions []string `yaml:"extensions"`
 }
 
-func New(rd io.Reader) (tSets []Set, err error) {
+// New returns a slice of Repositories given a YAML formatted
+// reader.
+func New(rd io.Reader) (tSets []Repository, err error) {
 	// Get and parse the yaml.
 	err = yaml.NewDecoder(rd).Decode(&tSets)
 	if err != nil {
