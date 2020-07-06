@@ -47,7 +47,7 @@ func ExtensionsFromReader(rd io.Reader) ([]string, error) {
 	if len(records) != 1 {
 		return nil, fmt.Errorf("wrong amount of rows in reader: expected %d got %d", 1, len(records))
 	}
-	return processExtensions(records[0]), nil
+	return PrettyExtensions(records[0]), nil
 }
 
 // ExtensionsFromString will return a slice of formatted file extensions
@@ -56,7 +56,9 @@ func ExtensionsFromString(str string) ([]string, error) {
 	return ExtensionsFromReader(strings.NewReader(str))
 }
 
-func processExtensions(unprocessed []string) []string {
+// PrettyExtensions turns an unprocessed list of extensions
+// to a pretty one.
+func PrettyExtensions(unprocessed []string) []string {
 	records := make([]string, len(unprocessed))
 	for i, ext := range unprocessed {
 		ext = strings.TrimSpace(ext)
