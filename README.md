@@ -19,39 +19,65 @@ go build
 
 ## Usage
 
-From `./rooster --help`:
+In order to use `rooster` a config file must be provided:
 
 ```
 Usage of ./rooster:
-  -ext string
-        The extension(s) to filter in a comma seperated list
-  -out string
-        The directory to store the output (default "rooster_output")
-  -repo string
-        The repo to grab
-  -type string
-        The VCS to use [supported options: git,svn,hg] (default "git")
+  -config string
+        Rooster's config file (default ".rooster.yaml")
 ```
 
-### Example
+The layout of the .rooster.yaml is as follows:
 
-Running `rooster -repo https://github.com/foo/bar -ext ".doc,docx,.txt"` will clone `https://github.com/foo/bar` and extract all files ending the `doc, docx, and txt` extensions. Two things of note:
+```yaml
+- repo: https://github.com/foo/bar
+  extensions:
+    - docx
+    - doc
+    - xlsx
+  out: foo_bar
 
-1. The leading `.` is optional
-2. Rooster will be strict and will NOT infer other file extension given another. (i.e. using .txt will only grab .txt files and NOT .text files)
+- repo: https://github.com/baz/qux
+  type: svn
+  extensions:
+    - .docx
+    - .doc
+    - xlsx
+  out: baz_qux
 
-Since the `-out` was omitted `rooster` will create a directory named `rooster_output` and once the program is done it will result in the following file structure:
+- repo: https://github.com/quux/corge
+  type: hg
+  extensions:
+    - md
+```
+
+Each object must have the following keys:
+
+- `repo`: The repository's URL
+- `extension`: An array of extensions to filter for
+
+Note the following:
+
+> 1. The leading `.` is optional
+> 2. Rooster will be strict and will NOT infer other file extension given another. (i.e. using .txt will only grab .txt files and NOT .text files)
+
+The following keys are optional:
+
+- `type`: The version control system to use (supported options: git,svn,hg) [default: git]
+- `out`: The output directory to save the filtered files to (default: rooster_output_xxxx)
+
+### Example Output
+
+Once `rooster` is done each filtered repository will have a output directory similar to the one below:
 
 ```
-rooster_output
+rooster_output_xxx
 ├── doc
 ├── docx
 └── txt
 ```
 
 Where all docx files will be in the `docx` directory and all the `doc` files will be in the `doc` folder, etc, etc.
-
-If the `-out` flag was used then `rooster_output` would be substituted for the argument passed to `-out`.
 
 ### Dependencies
 
@@ -73,3 +99,7 @@ Created at [LogoMakr.com](https://www.LogoMakr.com)
 ## [go-git](https://github.com/go-git/go-git)
 
 For the awesome git library written in pure go.
+
+## [go-yaml](https://github.com/go-yaml/yaml)
+
+For the awesome YAML parser.
