@@ -96,10 +96,10 @@ The currently supported vcs'es are:
 
 Created at [LogoMakr.com](https://www.LogoMakr.com)
 
-## [go-git](https://github.com/go-git/go-git)
+### go-git
 
-For the awesome git library written in pure go.
+For the awesome git [library](https://github.com/go-git/go-git) written in pure go.
 
-## [go-yaml](https://github.com/go-yaml/yaml)
+### go-yaml
 
-For the awesome YAML parser.
+For the awesome [YAML parser](https://github.com/go-yaml/yaml).
