@@ -49,6 +49,7 @@ The layout of the .rooster.yaml is as follows:
   type: hg
   extensions:
     - md
+    - "*.x*"
 ```
 
 Each object must have the following keys:
@@ -58,8 +59,9 @@ Each object must have the following keys:
 
 Note the following:
 
-> 1. The leading `.` is optional
-> 2. Rooster will be strict and will NOT infer other file extension given another. (i.e. using .txt will only grab .txt files and NOT .text files)
+1. The leading `.` is optional, unless shell patterns are used (see below).
+2. Standard shell patterns (as defined [here](https://golang.org/pkg/path/filepath/#Match)) may be used.
+   - If a shell pattern is used then the leading `.` becomes mandatory, and the extension must be enclosed in quotes.
 
 The following keys are optional:
 

@@ -24,12 +24,47 @@ func Find(root string, extensions []string) (ExtensionMap, error) {
 			return err
 		}
 
-		ext := strings.ToLower(filepath.Ext(path))
-		if _, in := s[ext]; !in {
-			return nil
+		// Get the current file extension from the file.
+		fileExtension := strings.ToLower(filepath.Ext(path))
+
+		// See if we can find the file's extension in the hash set.
+		if _, in := s[fileExtension]; !in {
+
+			// If we can't find it
+			// we'll have to check each extension
+			// in the set (suboptimal!), and check for the patter expression.
+			// In this case we'll remove the added dot from the string in the hash set.
+			//
+			// TODO: Optimize this.
+			var (
+				matched bool
+				err     error
+			)
+
+			for setExtension := range s {
+				matched, err = filepath.Match(setExtension[1:], fileExtension)
+				if err != nil {
+					return err
+				}
+				if matched {
+					// If we matched we can immediately exit.
+					break
+				}
+			}
+
+			// We landed here because either
+			// A) We matched and broke early.
+			// B) We exhausted the entire set.
+			// We can find out which one by checking matched.
+			if !matched {
+				// Case B, skip this file.
+				return nil
+			}
+			// Case A, continue ahead.
 		}
 
-		m[ext] = append(m[ext], path)
+		// fileExtension found or matched!
+		m[fileExtension] = append(m[fileExtension], path)
 		return nil
 	})
 
