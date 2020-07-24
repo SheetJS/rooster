@@ -70,7 +70,7 @@ To clone the repo we have two options:
 2. We can use [libgit2](https://libgit2.org) to directly clone the repo within the same process.
 
 Going with option 2 is indeed the "appropriate" way to do this.
-But since this utility is rather, small the overhead a making a child process isn't too taxing on the system.
+But since this utility is rather small, the overhead of making a child process isn't too taxing on the system.
 This also has the benefit using whatever credentials the user has stored with git for free without extra implementation.
 
 #### The Filtering Algorithm
